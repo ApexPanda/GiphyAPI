@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var pAndR = ["Ron Swanson", "April Ludgate", "Leslie Knopp", "Ben Wyatt", "Andy Dwyer", "Sweetums", "Tom Haverford", "Ann Perkins"];
+	var pAndR = ["Ron Swanson", "April Ludgate", "Leslie Knopp", "Ben Wyatt", "Andy Dwyer", "Tom Haverford", "Ann Perkins"];
 
 	// Add buttons for original movies array
 	function renderButtons() {
@@ -14,8 +14,8 @@ $(document).ready(function () {
 	// Adds a button for the show input
 	$("#add-show").on("click", function () {
 		event.preventDefault();
-		var show = $("#show-input").val();
-		pAndR.push(show);
+		var showNew = $("#show-input").val();
+		pAndR.push(showNew);
         renderButtons();
         console.log(pAndR);
 		return;
@@ -23,17 +23,21 @@ $(document).ready(function () {
 
 
 	// Gets gif from Giphy API 
-	$("button").on("click", function () {
+	$("body").on("click", ".btn-success", function () {
+		console.log("test");
+
         var show = $(this).attr("data-show");
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             show + "&api_key=RpfTEa8IXfuMLWfpzrglmryWn0HkKOp8&limit=10";
-            
+			
+			console.log(show);
             console.log(queryURL);
 
 		$.ajax({
 			url: queryURL,
 			method: "GET"
 		}).done(function (response) {
+			console.log(response);
 			var results = response.data;
 			$("#shows").empty();
 			for (var i = 0; i < results.length; i++) {
