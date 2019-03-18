@@ -4,7 +4,7 @@ $(document).ready(function () {
 	// Add buttons for original movies array
 	function renderButtons() {
 		$("#show-buttons").empty();
-		for (i = 0; i < pAndR.length; i++) {
+		for (var i = 0; i < pAndR.length; i++) {
 			$("#show-buttons").append("<button class='btn btn-success' data-show='" + pAndR[i] + "'>" + pAndR[i] + "</button>");
 		}
 	}
@@ -14,7 +14,7 @@ $(document).ready(function () {
 	// Adds a button for the show input
 	$("#add-show").on("click", function () {
 		event.preventDefault();
-		var show = $("#show-input").val().trim();
+		var show = $("#show-input").val();
 		pAndR.push(show);
         renderButtons();
         console.log(pAndR);
